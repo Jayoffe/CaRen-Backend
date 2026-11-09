@@ -175,8 +175,13 @@ class MaintenanceController extends Controller
     /** The JSON or form request body. Always an array. */
     private function input()
     {
-        $input = $this->request->is_json() ? $this->request->json() : $this->request->post();
+        $input = $this->request->post();
+        if ($input !== []) {
+            return $input;
+        }
 
-        return is_array($input) ? $input : [];
+        $json = $this->request->json();
+
+        return is_array($json) ? $json : [];
     }
 }
