@@ -4,6 +4,7 @@
 # Environment
 .env
 !.env.example
+\database
 
 # Dependencies
 vendor/
