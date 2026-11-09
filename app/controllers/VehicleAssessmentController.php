@@ -547,7 +547,12 @@ class VehicleAssessmentController extends Controller
 
     private function input()
     {
-        $input = $this->request->is_json() ? $this->request->json() : $this->request->post();
+        $input = $this->request->post();
+        if ($input !== []) {
+            return $input;
+        }
+
+        $input = $this->request->json();
         if (!is_array($input)) {
             throw new InvalidArgumentException('Request body must be a JSON object.');
         }
